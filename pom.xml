@@ -4,14 +4,14 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>nl.lolmewn.skillz</groupId>
     <artifactId>Skillz</artifactId>
-    <version>5.10.0-SNAPSHOT</version>
+    <version>6.1.0-SNAPSHOT</version>
     <name>Skillz</name>
     <url>http://mcsats.org/plugin/Skillz</url>
     <repositories>
         <repository>
-            <id>bukkit-repo</id>
-            <url>http://repo.bukkit.org/content/groups/public/</url>
-        </repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+	</repository>
         <repository>
             <id>sk89q-repo</id>
             <url>http://maven.sk89q.com/repo/</url>
@@ -23,6 +23,10 @@
         <repository>
             <id>McStats</id>
             <url>http://repo.mcstats.org/content/repositories/public/</url>
+        </repository>
+        <repository>
+            <id>cnaude-repo</id>
+            <url>http://cnaude.org/repo/</url>
         </repository>
     </repositories>
     <build>
@@ -99,27 +103,34 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.5.1-R0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>dev.bukkit.org.server-mods</groupId>
-            <artifactId>vault</artifactId>
-            <version>1.2.25</version>
-        </dependency>
+            <version>1.9.2-R0.1-SNAPSHOT</version>
+	</dependency>
         <dependency>
             <groupId>com.sk89q</groupId>
             <artifactId>worldguard</artifactId>
-            <version>5.7.2-SNAPSHOT</version>
+            <version>6.1.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>dev.bukkit.org.server-mods</groupId>
-            <artifactId>factions</artifactId>
-            <version>1.8.2</version>
+            <groupId>com.cnaude.factions</groupId>
+            <artifactId>Factions</artifactId>
+            <version>2.8.2</version>
         </dependency>
         <dependency>
             <groupId>org.mcstats.bukkit</groupId>
             <artifactId>metrics</artifactId>
             <version>R7</version>
+        </dependency>
+        <dependency>
+            <groupId>net.milkbowl.vault</groupId>
+            <artifactId>Vault</artifactId>
+            <version>1.2.32</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.cnaude.mcore</groupId>
+            <artifactId>MassiveCore</artifactId>
+            <version>2.8.2</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
     <issueManagement>

@@ -1,7 +1,6 @@
 package nl.lolmen.Skills;
 
-import com.massivecraft.factions.FPlayer;
-import com.massivecraft.factions.FPlayers;
+import com.massivecraft.factions.entity.MPlayer;
 import com.sk89q.worldguard.protection.flags.DefaultFlag;
 import nl.lolmen.Skills.skills.*;
 import nl.lolmen.Skillz.Skillz;
@@ -40,8 +39,8 @@ public class SkillEntityListener implements Listener {
             if(SkillsSettings.hasFactions()){
                 if(event instanceof EntityDamageByEntityEvent){
                     Player attacker = (Player)((EntityDamageByEntityEvent)event).getDamager();
-                    FPlayer fPlayer = FPlayers.i.get(p);
-                    FPlayer fAttacker = FPlayers.i.get(attacker);
+                    MPlayer fPlayer = MPlayer.get(p);
+                    MPlayer fAttacker = MPlayer.get(attacker);
                     if(fPlayer.hasFaction() && fAttacker.hasFaction()){
                         if(fPlayer.getFactionId().equals(fAttacker.getFactionId())){
                             return;
@@ -62,7 +61,7 @@ public class SkillEntityListener implements Listener {
                         return;
                     }
                     Acrobatics a = (Acrobatics) s;
-                    int damage = event.getDamage() * s.getMultiplier();
+                    int damage = (int) (event.getDamage() * s.getMultiplier());
                     s.addXP(p, damage);
                     if (u.getLevel(s.getSkillName()) >= a.getLevelsTillLessDMG()) {
                         double deduct = u.getLevel(s.getSkillName()) / a.getLevelsTillLessDMG();
@@ -218,7 +217,7 @@ public class SkillEntityListener implements Listener {
                 }
             }
             if (att instanceof Arrow) {
-                LivingEntity ent = ((Arrow) att).getShooter();
+                LivingEntity ent = (LivingEntity) ((Arrow) att).getShooter();
                 if (ent instanceof Player) {
                     if(SkillsSettings.hasWorldGuard()){
                         if(!SkillsSettings.getWorldGuard().getRegionManager(event.getEntity().getWorld()).getApplicableRegions(event.getEntity().getLocation()).allows(DefaultFlag.PVP, SkillsSettings.getWorldGuard().wrapPlayer((Player)ent))){

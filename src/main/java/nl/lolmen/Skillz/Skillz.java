@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.util.Properties;
+import java.util.Collection;
 import nl.lolmen.API.SkillzAPI;
 import nl.lolmen.Skills.*;
 import org.bukkit.Bukkit;
@@ -137,7 +138,7 @@ public class Skillz extends JavaPlugin {
         if (this.userManager == null) {
             this.userManager = new UserManager(this);
         }
-        if (this.getServer().getOnlinePlayers().length != 0) {
+        if (this.getServer().getOnlinePlayers().size() != 0) {
             //There are players in the server
             for (Player p : this.getServer().getOnlinePlayers()) {
                 this.userManager.loadPlayer(p.getName());
@@ -551,13 +552,16 @@ public class Skillz extends JavaPlugin {
     }
 
     private void checkPlayers() {
-        Player[] online = this.getServer().getOnlinePlayers();
-        for(int i = 0; i < online.length; i++){
-            String name = online[i].getName();
-            if(SkillsSettings.isDebug()){
-                this.getLogger().info("[Debug] Reloading player " + name);
+        Collection<? extends Player> online = this.getServer().getOnlinePlayers();
+        //for(int i = 0; i < online.size(); i++){
+        if (online.size() > 0) {
+            for (Player p : online){
+                String name = p.getName();
+                if(SkillsSettings.isDebug()){
+                    this.getLogger().info("[Debug] Reloading player " + name);
+                }
+                this.getUserManager().loadPlayer(p.getName());
             }
-            this.getUserManager().loadPlayer(online[i].getName());
         }
     }
     
